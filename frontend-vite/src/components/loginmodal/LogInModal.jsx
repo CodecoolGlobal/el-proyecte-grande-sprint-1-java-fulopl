@@ -13,6 +13,8 @@ function LogInModal({onLogin, onToggle}) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [memberData, setMemberData] = useState(null);
+    const [errorMsg, setErrorMsg] = useState("");
+
     const {user, login, logout} = useUser();
 
     const handleClose = () => setShow(false);
@@ -25,8 +27,16 @@ function LogInModal({onLogin, onToggle}) {
             username,
             password
         };
-        login(userData);
-        onLogin();
+        login(userData).then(loginMsg => {
+            console.log("Login msg: " + loginMsg);
+            if (loginMsg === "OK") {
+                setErrorMsg("");
+                onLogin();
+                navigate("/");
+                setShow(false);
+            }
+            else (setErrorMsg(loginMsg))
+        })
     }
 
     return (
@@ -73,10 +83,15 @@ function LogInModal({onLogin, onToggle}) {
                                 <p>
                                     Greetings {memberData.firstName} {memberData.lastName}
                                 </p>
-                            ) : (
-                                <p>
-                                    You are not Logged in.
+                            ) : (errorMsg ? (
+                                <p style={{color: "red"}}>
+                                    {errorMsg}
                                 </p>
+                                ) : (
+                                <p>
+                                    Enter username and password!
+                                </p>
+                                )
                             )
                         }
                     </Form>
@@ -87,8 +102,8 @@ function LogInModal({onLogin, onToggle}) {
                         variant="secondary"
                         onClick={() => {
                             handleLogin();
-                            navigate("/");
-                            setShow(false);
+                            //navigate("/");
+                            //setShow(false);
                         }}
                     >
                         Log In
