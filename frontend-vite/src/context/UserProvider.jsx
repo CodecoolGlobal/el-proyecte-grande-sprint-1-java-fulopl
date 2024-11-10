@@ -37,7 +37,7 @@ const UserProvider = ({children}) => {
     }, [user])
 
     const login = (credentials) => {
-        fetch("/api/login", {
+        return fetch("/api/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -51,7 +51,12 @@ const UserProvider = ({children}) => {
                     setToken(token);
                     getMe(token);
                     console.log("User logged in")
+                    return "OK"
                 }
+                if (res.Error) {
+                    return res.Error
+                }
+                return "Unexpected error"
             })
     }
 
