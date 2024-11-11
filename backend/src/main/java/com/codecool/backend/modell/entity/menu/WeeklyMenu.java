@@ -12,7 +12,8 @@ import java.util.List;
 public class WeeklyMenu {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "weekly_menu_seq_gen")
+    @SequenceGenerator(name = "weekly_menu_seq_gen", sequenceName = "weekly_menu_seq", initialValue = 101, allocationSize = 1)
     private Long id;
     private int year;
     private int weekNumber;
