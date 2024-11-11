@@ -31,7 +31,6 @@ function LogInModal({onToggle}) {
             password
         };
         login(userData).then(loginMsg => {
-            console.log("Login msg: " + loginMsg);
             if (loginMsg === "OK") {
                 setErrorMsg("");
                 navigate("/");
@@ -104,8 +103,6 @@ function LogInModal({onToggle}) {
                         variant="secondary"
                         onClick={() => {
                             handleLogin();
-                            //navigate("/");
-                            //setShow(false);
                         }}
                     >
                         Log In

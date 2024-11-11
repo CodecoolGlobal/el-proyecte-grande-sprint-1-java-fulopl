@@ -17,10 +17,8 @@ function NavBar() {
         if (user) {
             if (user.roles.some(role => role.role === "ROLE_ADMIN")) {
                 setHasAdminRole(true)
-                console.log("HasADmin: " + hasAdminRole)
             } else {
                 setHasAdminRole(false)
-                console.log("HasADmin: " + hasAdminRole)
             }
         }
     }, [user])
