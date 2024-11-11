@@ -11,7 +11,7 @@ import logo from "./Mask group.png";
 function NavBar() {
     const {user, logout} = useUser();
     const [isOpen, setIsOpen] = useState(false);
-    const [hasAdminRole, setHasAdminRole] = useState(false)
+    const [hasAdminRole, setHasAdminRole] = useState(false);
 
     useEffect(() => {
         if (user) {

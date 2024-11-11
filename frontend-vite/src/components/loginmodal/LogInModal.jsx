@@ -17,7 +17,10 @@ function LogInModal({onToggle}) {
 
     const {user, login, logout} = useUser();
 
-    const handleClose = () => setShow(false);
+    const handleClose = () => {
+        setShow(false);
+        setErrorMsg("");
+    }
     const handleShow = () => setShow(true);
     const navigate = useNavigate();
 
