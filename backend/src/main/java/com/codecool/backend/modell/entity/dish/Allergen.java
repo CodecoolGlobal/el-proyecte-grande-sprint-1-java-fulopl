@@ -1,8 +1,6 @@
 package com.codecool.backend.modell.entity.dish;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,7 +10,8 @@ import lombok.Setter;
 public class Allergen {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "allergen_seq_gen")
+    @SequenceGenerator(name = "allergen_seq_gen", sequenceName = "allergen_seq", initialValue = 101, allocationSize = 1)
     private Long id;
 
     private String name;

@@ -9,7 +9,8 @@ import lombok.Getter;
 public class MenuItem {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "menu_item_seq_gen")
+    @SequenceGenerator(name = "menu_item_seq_gen", sequenceName = "menu_item_seq", initialValue = 201, allocationSize = 1)
     private Long id;
     @ManyToOne
     private CourseType course;
