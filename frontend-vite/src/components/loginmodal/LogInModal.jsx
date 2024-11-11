@@ -8,7 +8,7 @@ import {Link, useNavigate} from "react-router-dom";
 import {useUser} from "../../context/UserProvider";
 
 
-function LogInModal({onLogin, onToggle}) {
+function LogInModal({onToggle}) {
     const [show, setShow] = useState(false);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -31,7 +31,6 @@ function LogInModal({onLogin, onToggle}) {
             console.log("Login msg: " + loginMsg);
             if (loginMsg === "OK") {
                 setErrorMsg("");
-                onLogin();
                 navigate("/");
                 setShow(false);
             }
