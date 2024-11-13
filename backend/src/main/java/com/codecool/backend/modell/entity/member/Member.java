@@ -13,7 +13,8 @@ import java.util.UUID;
 public class Member {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
+    @SequenceGenerator(name = "user_seq", sequenceName = "user_entity_seq", initialValue = 101, allocationSize = 1)
     private long id;
     private UUID publicId;
     @Column(unique = true)

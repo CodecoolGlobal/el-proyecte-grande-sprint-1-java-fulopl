@@ -12,7 +12,8 @@ import java.util.Set;
 public class Dish {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "dish_seq_gen")
+    @SequenceGenerator(name = "dish_seq_gen", sequenceName = "dish_seq", initialValue = 101, allocationSize = 1)
     private long id;
 
     private String name;
