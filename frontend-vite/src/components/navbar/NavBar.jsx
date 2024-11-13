@@ -10,25 +10,18 @@ import logo from "./Mask group.png";
 
 function NavBar() {
     const {user, logout} = useUser();
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
-    const [hasAdminRole, setHasAdminRole] = useState(false)
+    const [hasAdminRole, setHasAdminRole] = useState(false);
 
     useEffect(() => {
         if (user) {
             if (user.roles.some(role => role.role === "ROLE_ADMIN")) {
                 setHasAdminRole(true)
-                console.log("HasADmin: " + hasAdminRole)
             } else {
                 setHasAdminRole(false)
-                console.log("HasADmin: " + hasAdminRole)
             }
         }
     }, [user])
-
-    const changeIsLoggedIn = () => {
-        setIsLoggedIn(true);
-    }
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
@@ -62,13 +55,11 @@ function NavBar() {
                                     <Link to={"/"}
                                           onClick={() => {
                                               logout();
-                                              setIsLoggedIn(false);
                                               toggleMenu();
                                           }}>Log out</Link>
                                 </li>
                             </>
-                            : <li><LogInModal onLogin={changeIsLoggedIn}
-                                              onToggle={toggleMenu}/>
+                            : <li><LogInModal onToggle={toggleMenu}/>
                             </li>
                         }
                     </ul>

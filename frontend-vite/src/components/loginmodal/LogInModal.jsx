@@ -8,7 +8,7 @@ import {Link, useNavigate} from "react-router-dom";
 import {useUser} from "../../context/UserProvider";
 
 
-function LogInModal({onLogin, onToggle}) {
+function LogInModal({onToggle}) {
     const [show, setShow] = useState(false);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -17,7 +17,10 @@ function LogInModal({onLogin, onToggle}) {
 
     const {user, login, logout} = useUser();
 
-    const handleClose = () => setShow(false);
+    const handleClose = () => {
+        setShow(false);
+        setErrorMsg("");
+    }
     const handleShow = () => setShow(true);
     const navigate = useNavigate();
 
@@ -28,10 +31,8 @@ function LogInModal({onLogin, onToggle}) {
             password
         };
         login(userData).then(loginMsg => {
-            console.log("Login msg: " + loginMsg);
             if (loginMsg === "OK") {
                 setErrorMsg("");
-                onLogin();
                 navigate("/");
                 setShow(false);
             }
@@ -102,8 +103,6 @@ function LogInModal({onLogin, onToggle}) {
                         variant="secondary"
                         onClick={() => {
                             handleLogin();
-                            //navigate("/");
-                            //setShow(false);
                         }}
                     >
                         Log In
