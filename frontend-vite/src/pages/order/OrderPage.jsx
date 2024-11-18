@@ -108,7 +108,7 @@ function OrderPage() {
                             </tbody>
                         </table>
                         <div className={style.FinalPrize}>
-                            <h3>Final Prize: {calculateTotalPrice(orderList)} €</h3>
+                            <h3>Final Price: {calculateTotalPrice(orderList)} €</h3>
                         </div>
                         <form onSubmit={(e) => orderSubmit(e)}>
                             <div className={style.OrderAddressForm}>

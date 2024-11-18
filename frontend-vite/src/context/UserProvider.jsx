@@ -50,13 +50,12 @@ const UserProvider = ({children}) => {
                 if (token) {
                     setToken(token);
                     getMe(token);
-                    console.log("User logged in")
                     return "OK"
                 }
-                if (res.Error) {
-                    return res.Error
+                if (res.error === "Bad credentials") {
+                    return "Invalid username or password!"
                 }
-                return "Unexpected error"
+                return "Unexpected error!"
             })
     }
 
